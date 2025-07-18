@@ -1,0 +1,67 @@
+﻿@page "/counter"
+
+@inject IJSRuntime ToastHelper
+@using FrontendApp.Helpers
+@inject IJSRuntime JS
+
+
+
+
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount"><i class="bi bi-1-circle me-2"></i> Click me</button>
+
+<button class="btn btn-success" @onclick="ConfirmerSucces"> Succes</button>
+
+
+<Animate Animation="Animations.FadeUpRight" Duration="TimeSpan.FromSeconds(3)" TriggerOnce="true">
+    <form>
+        <fieldset disabled>
+            <legend>Disabled fieldset example</legend>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Disabled input</label>
+                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+            </div>
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Disabled select menu</label>
+                <select id="disabledSelect" class="form-select">
+                    <option>Disabled select</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
+                    <label class="form-check-label" for="disabledFieldsetCheck">
+                        Can't check this
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            
+        </fieldset>
+    </form>
+    </Animate>
+
+
+@code {
+    private int currentCount = 0;
+    private async Task ConfirmerSucces()
+    {
+        await JS.InvokeVoidAsync("FonctionShowSwal", "success", "Tache Accompli");
+       
+
+    }
+    private void IncrementCount()
+    {
+        currentCount++;
+     
+     
+    }
+
+}
+  // await JS.InvokeVoidAsync("FonctionShowSwal", "success", "Bonjour avec SweetAlert !");
